@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("message", "text");
         //УРААААА
         //работает?
+        //ДА
     }
 }
