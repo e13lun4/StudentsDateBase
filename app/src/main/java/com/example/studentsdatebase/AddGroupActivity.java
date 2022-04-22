@@ -11,6 +11,7 @@ public class AddGroupActivity extends AppCompatActivity {
     private EditText groupId;
     private EditText groupName;
     private Button addGroupBtn;
+    public static Intent id_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class AddGroupActivity extends AppCompatActivity {
 
         addGroupBtn.setOnClickListener(view -> {
             Intent intent = new Intent(AddGroupActivity.this, ChooseGroupAdapter.class);
-            intent.putExtra("GROUP_ID", groupId.getText().toString());
+            id_ = intent.putExtra("GROUP_ID", groupId.getText().toString());
             intent.putExtra("GROUP_NAME", groupName.getText().toString());
             Intent intent1 = new Intent(AddGroupActivity.this, ChooseGroupActivity.class);
             startActivity(intent1);

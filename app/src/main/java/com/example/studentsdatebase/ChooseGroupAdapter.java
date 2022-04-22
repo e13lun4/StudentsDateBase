@@ -1,6 +1,7 @@
 package com.example.studentsdatebase;
 
 import static com.example.studentsdatebase.ChooseGroupActivity.groupsList;
+import static com.example.studentsdatebase.AddGroupActivity.id_;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,9 +21,11 @@ import java.util.List;
 public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.ViewHolder> {
     private List<GroupModel> groupList;
     public static String g_id;
+    private Context context;
 
-    public ChooseGroupAdapter(List<GroupModel> groupList) {
+    public ChooseGroupAdapter(List<GroupModel> groupList, Context context) {
         this.groupList = groupList;
+        this.context = context;
     }
 
     @NonNull
@@ -34,8 +37,9 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Intent intent = new Intent();
-        g_id = intent.getStringExtra("GROUP_ID");
+//        String g_id = groupList.get(position).getId();
+//        String g_id = "text";
+        String g_id = id_.getStringExtra("GROUP_ID");
         holder.viewData(g_id, position, this);
     }
 

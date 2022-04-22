@@ -24,22 +24,23 @@ public class ChooseGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_group);
-
-        chooseGroupRecyclerView = findViewById(R.id.chooseGroupRecyclerView);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(ChooseGroupActivity.this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        chooseGroupRecyclerView.setLayoutManager(layoutManager);
-
-        viewGroups();
-    }
-
-    private void viewGroups(){
-        groupsList.clear();
         groupsList.add(new GroupModel(g_id, "test"));
         groupsList.add(new GroupModel(g_id, "test2"));
         groupsList.add(new GroupModel(g_id, "test3"));
-        adapter = new ChooseGroupAdapter(groupsList);
+        chooseGroupRecyclerView = findViewById(R.id.chooseGroupRecyclerView);
+
+
+
+
+
+        viewGroups(groupsList);
+    }
+
+    private void viewGroups(List<GroupModel> groupsList){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(ChooseGroupActivity.this,RecyclerView.VERTICAL, false);
+        chooseGroupRecyclerView.setLayoutManager(layoutManager);
+
+        adapter = new ChooseGroupAdapter(groupsList,this);
         chooseGroupRecyclerView.setAdapter(adapter);
     }
 
