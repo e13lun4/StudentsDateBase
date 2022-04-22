@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentsDateBase">
         <activity
-            android:name=".ChooseGroup"
+            android:name=".ChooseGroupActivity"
             android:exported="false" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".AddGroupActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -9,20 +9,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    private Button addGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("message", "text");
-        Button btn = findViewById(R.id.AddStudent);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
-
-            }
+        addGroup = findViewById(R.id.addGroup);
+        addGroup.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AddGroupActivity.class);
+            startActivity(intent);
         });
     }
 }

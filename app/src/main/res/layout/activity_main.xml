@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/AddStudent"
+        android:id="@+id/addGroup"
         android:layout_width="223dp"
         android:layout_height="129dp"
         android:text="Добавить группу"
