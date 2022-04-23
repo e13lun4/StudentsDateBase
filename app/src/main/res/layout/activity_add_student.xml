@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddStudentActivity">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="207dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="40dp"
+        android:hint="Имя:"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Surname"
+        android:layout_width="207dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:hint="Фамилия:"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <EditText
+        android:id="@+id/LastName"
+        android:layout_width="207dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:hint="Отчество"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Surname" />
+
+    <EditText
+        android:id="@+id/BirthDate"
+        android:layout_width="207dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:hint="Дата рождения:"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LastName" />
+
+    <EditText
+        android:id="@+id/group"
+        android:layout_width="207dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:hint="Название группы:"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BirthDate" />
+
+    <Button
+        android:id="@+id/AddStudent"
+        android:layout_width="157dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="116dp"
+        android:text="Добавить студента"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

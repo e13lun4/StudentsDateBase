@@ -67,7 +67,7 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
             itemView.setOnClickListener(view -> {
                 ChooseGroupActivity.sGroupI = pos;
                 //TODO
-                Intent intent = new Intent();
+                Intent intent = new Intent(context, AddStudentActivity.class);
                 itemView.getContext().startActivity(intent);
             });
 

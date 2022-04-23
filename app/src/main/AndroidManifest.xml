@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentsDateBase">
         <activity
+            android:name=".ChooseStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChooseGroupActivity"
             android:exported="false" />
         <activity
