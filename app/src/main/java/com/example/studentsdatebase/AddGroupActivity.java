@@ -1,5 +1,7 @@
 package com.example.studentsdatebase;
 
+import static com.example.studentsdatebase.ChooseGroupActivity.groupsList;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +14,7 @@ public class AddGroupActivity extends AppCompatActivity {
     private EditText groupName;
     private Button addGroupBtn;
     public static Intent id_;
+    public static int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,8 @@ public class AddGroupActivity extends AppCompatActivity {
             id_ = intent.putExtra("GROUP_ID", groupId.getText().toString());
             intent.putExtra("GROUP_NAME", groupName.getText().toString());
             Intent intent1 = new Intent(AddGroupActivity.this, ChooseGroupActivity.class);
+            count++;
+            groupsList.add(new GroupModel(groupId.getText().toString(), groupName.getText().toString()));
             startActivity(intent1);
         });
     }

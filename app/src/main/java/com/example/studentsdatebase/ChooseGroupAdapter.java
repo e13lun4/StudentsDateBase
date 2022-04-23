@@ -6,6 +6,7 @@ import static com.example.studentsdatebase.AddGroupActivity.id_;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,9 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        String g_id = groupList.get(position).getId();
 //        String g_id = "text";
-        String g_id = id_.getStringExtra("GROUP_ID");
-        holder.viewData(g_id, position, this);
+//        String g_id = id_.getStringExtra("GROUP_ID");
+        String group_id = String.valueOf(groupList.get(position).getId());
+        holder.viewData(group_id, position, this);
     }
 
     @Override

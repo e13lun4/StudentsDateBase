@@ -1,6 +1,8 @@
 package com.example.studentsdatebase;
 
+import static com.example.studentsdatebase.AddGroupActivity.id_;
 import static com.example.studentsdatebase.ChooseGroupAdapter.g_id;
+import static com.example.studentsdatebase.AddGroupActivity.count;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,22 +26,21 @@ public class ChooseGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_group);
-        groupsList.add(new GroupModel(g_id, "test"));
-        groupsList.add(new GroupModel(g_id, "test2"));
-        groupsList.add(new GroupModel(g_id, "test3"));
+//        groupsList.add(new GroupModel(g_id, "test"));
+//        groupsList.add(new GroupModel(g_id, "test2"));
+//        groupsList.add(new GroupModel(g_id, "test3"));
         chooseGroupRecyclerView = findViewById(R.id.chooseGroupRecyclerView);
 
 
 
-
-
-        viewGroups(groupsList);
+        viewGroups();
     }
 
-    private void viewGroups(List<GroupModel> groupsList){
+    private void viewGroups(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(ChooseGroupActivity.this,RecyclerView.VERTICAL, false);
         chooseGroupRecyclerView.setLayoutManager(layoutManager);
-
+//        groupsList.add(new GroupModel("1", "first"));
+//        groupsList.add(new GroupModel("2", "second"));
         adapter = new ChooseGroupAdapter(groupsList,this);
         chooseGroupRecyclerView.setAdapter(adapter);
     }
