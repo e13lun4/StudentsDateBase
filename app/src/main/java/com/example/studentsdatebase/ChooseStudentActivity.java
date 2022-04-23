@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ChooseStudentActivity extends AppCompatActivity {
     private RecyclerView chooseStudentRecyclerView;
-    public static List<GroupModel> studentsList = new ArrayList<>();
-    public static int sGroupI = 0;
+    public static List<StudentModel> studentsList = new ArrayList<>();
+    public static int sStudentI = 0;
     private ChooseStudentAdapter adapter;
 
     @Override
@@ -20,16 +20,15 @@ public class ChooseStudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_student);
 
-        chooseStudentRecyclerView = findViewById(R.id.rec);
+        chooseStudentRecyclerView = findViewById(R.id.chooseStudentRecyclerView);
 
         viewStudents();
     }
     private void viewStudents(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(ChooseStudentActivity.this,RecyclerView.VERTICAL, false);
         chooseStudentRecyclerView.setLayoutManager(layoutManager);
-//        groupsList.add(new GroupModel("1", "first"));
-//        groupsList.add(new GroupModel("2", "second"));
-        adapter = new ChooseStudentAdapter(studentsList,this);
+
+        adapter = new ChooseStudentAdapter(studentsList);
         chooseStudentRecyclerView.setAdapter(adapter);
     }
 

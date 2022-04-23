@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("message", "text");
         addGroup = findViewById(R.id.addGroup);
         addGroup.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AddGroupActivity.class);

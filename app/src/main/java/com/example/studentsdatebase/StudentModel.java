@@ -1,12 +1,12 @@
 package com.example.studentsdatebase;
 
 public class StudentModel {
-    String name, surname, lastname,birthDate;
+    String name, surname, middleName,birthDate;
 
     public StudentModel(String name, String surname, String lastname, String birthDate) {
         this.name = name;
         this.surname = surname;
-        this.lastname = lastname;
+        this.middleName = lastname;
         this.birthDate = birthDate;
     }
 
@@ -26,12 +26,12 @@ public class StudentModel {
         this.surname = surname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getBirthDate() {
