@@ -16,7 +16,6 @@ import java.util.List;
 public class ChooseGroupActivity extends AppCompatActivity {
     private RecyclerView chooseGroupRecyclerView;
     public static List<GroupModel> groupsList = new ArrayList<>();
-    public static int sGroupI = 0;
     private ChooseGroupAdapter adapter;
 
     @Override

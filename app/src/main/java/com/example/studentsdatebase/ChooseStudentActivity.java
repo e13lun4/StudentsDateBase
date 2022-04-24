@@ -16,7 +16,6 @@ import java.util.List;
 public class ChooseStudentActivity extends AppCompatActivity {
     private RecyclerView chooseStudentRecyclerView;
     public static List<StudentModel> studentsList = new ArrayList<>();
-    public static int sStudentI = 0;
     private ChooseStudentAdapter adapter;
 
     @Override

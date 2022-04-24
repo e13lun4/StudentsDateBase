@@ -27,17 +27,9 @@ public class AddStudentActivity extends AppCompatActivity {
         group = findViewById(R.id.studentGroup);
 
         addStudentBtn.setOnClickListener(view -> {
-//            Intent intent = new Intent(AddStudentActivity.this, ChooseStudentAdapter.class);
-//            intent.putExtra("NameStudent", name.getText().toString());
-//            intent.putExtra("SurnameStudent", surname.getText().toString());
-//            intent.putExtra("LastNameStudent", LastName.getText().toString());
-//            intent.putExtra("BirthDateStudent", BirthDate.getText().toString());
-
-//            Intent intent1 = new Intent(AddStudentActivity.this, ChooseStudentActivity.class);
             countStudents++;
             studentsList.add(new StudentModel(name.getText().toString(), surname.getText().toString(), middleName.getText().toString(), birthDate.getText().toString(), group.getText().toString()));
             Toast.makeText(getApplicationContext(), "Студент " + surname.getText().toString() + " " + name.getText().toString() +  " успешно добавлен(а)!", Toast.LENGTH_SHORT).show();
-//            startActivity(intent1);
         });
     }
 }

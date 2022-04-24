@@ -29,7 +29,6 @@ import java.util.List;
 public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.ViewHolder> implements Filterable {
     private List<GroupModel> groupList;
     private List<GroupModel> FullGroupList;
-    public static String g_id;
 
     public ChooseGroupAdapter(List<GroupModel> groupList) {
         this.groupList = groupList;
@@ -119,36 +118,9 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
         private void viewData(String name_id, String name_name,  int pos, ChooseGroupAdapter adapter){
             groupId.setText(name_id);
             groupName.setText(name_name);
-//            itemView.setOnClickListener(view -> {
-//                ChooseGroupActivity.sGroupI = pos;
-//                Intent intent = new Intent(itemView.getContext(), MainActivity2.class);
-//                itemView.getContext().startActivity(intent);
-//            });
 
             dBtn.setOnClickListener(view -> {
-                int countDelets = 0;
-//                Log.i("id", groupId.getText().toString());
-//                Log.i("sId", studentsList.get(0).getGroup());
-                if (countStudents == 0) {
-                    deleteGroup(pos, itemView.getContext(), adapter);
-                }else{
-                    for (int i = 0; i < countStudents; i++) {
-                        if (studentsList.get(i).getGroup().equals(groupId.getText().toString())) {
-                            Toast.makeText(itemView.getContext(), "Невозможно удалить группу", Toast.LENGTH_SHORT).show();
-                            break;
-                        } else {
-                            //TODO
-                            countDelets++;
-                            if (countDelets == countStudents){
-                                deleteGroup(pos, itemView.getContext(), adapter);
-                            }else{
-                                Toast.makeText(itemView.getContext(), "Невозможно удалить группу", Toast.LENGTH_SHORT).show();
-                                break;
-                            }
-
-                        }
-                    }
-                }
+                deleteGroup(pos, itemView.getContext(), adapter);
             });
 
             itemView.setOnLongClickListener(view -> {

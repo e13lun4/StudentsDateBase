@@ -133,11 +133,7 @@ public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdap
             sGroup.setText(studentG);
             sBirthDate.setText(studentBD);
 
-//            itemView.setOnClickListener(view -> {
-//                ChooseStudentActivity.sStudentI = pos;
-//                Intent intent = new Intent(context, MainActivity2.class);
-//                itemView.getContext().startActivity(intent);
-//            });
+
 
             dBtn.setOnClickListener(view -> {
                 deleteStudent(pos, itemView.getContext(), adapter);
@@ -148,7 +144,7 @@ public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdap
                 currentStudentSurname.setText(studentList.get(pos).getSurname());
                 currentStudentMiddleName.setText(studentList.get(pos).getMiddleName());
                 currentStudentBirthDate.setText(studentList.get(pos).getBirthDate());
-                currentStudentGroup.setText(studentList.get(pos).getGroup());
+//                currentStudentGroup.setText(studentList.get(pos).getGroup());
                 dialog.show();
 
                 return false;
