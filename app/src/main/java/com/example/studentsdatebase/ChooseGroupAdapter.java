@@ -1,5 +1,6 @@
 package com.example.studentsdatebase;
 
+import static com.example.studentsdatebase.AddGroupActivity.countGroups;
 import static com.example.studentsdatebase.AddStudentActivity.countStudents;
 import static com.example.studentsdatebase.ChooseGroupActivity.groupsList;
 import static com.example.studentsdatebase.ChooseStudentActivity.studentsList;
@@ -7,6 +8,7 @@ import static com.example.studentsdatebase.ChooseStudentActivity.studentsList;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +28,12 @@ import java.util.List;
 
 public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.ViewHolder> implements Filterable {
     private List<GroupModel> groupList;
-    private List<GroupModel> FullgroupList;
+    private List<GroupModel> FullGroupList;
     public static String g_id;
 
     public ChooseGroupAdapter(List<GroupModel> groupList) {
         this.groupList = groupList;
-        FullgroupList = new ArrayList<>(groupList);
+        FullGroupList = new ArrayList<>(groupList);
 
     }
 
@@ -64,11 +66,11 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<GroupModel> filteredlist = new ArrayList<>();
             if (charSequence == null || charSequence.length() == 0){
-                filteredlist.addAll(FullgroupList);
+                filteredlist.addAll(FullGroupList);
             } else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
-                for(GroupModel item: FullgroupList){
+                for(GroupModel item: FullGroupList){
                     if (item.getId().toLowerCase().contains(filterPattern)){
                         filteredlist.add(item);
                     }
@@ -124,6 +126,7 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 //            });
 
             dBtn.setOnClickListener(view -> {
+                int countDelets = 0;
 //                Log.i("id", groupId.getText().toString());
 //                Log.i("sId", studentsList.get(0).getGroup());
                 if (countStudents == 0) {
@@ -132,8 +135,17 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
                     for (int i = 0; i < countStudents; i++) {
                         if (studentsList.get(i).getGroup().equals(groupId.getText().toString())) {
                             Toast.makeText(itemView.getContext(), "Невозможно удалить группу", Toast.LENGTH_SHORT).show();
+                            break;
                         } else {
-                            deleteGroup(pos, itemView.getContext(), adapter);
+                            //TODO
+                            countDelets++;
+                            if (countDelets == countStudents){
+                                deleteGroup(pos, itemView.getContext(), adapter);
+                            }else{
+                                Toast.makeText(itemView.getContext(), "Невозможно удалить группу", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
                         }
                     }
                 }
@@ -163,6 +175,7 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
         @SuppressLint("NotifyDataSetChanged")
         private void deleteGroup(int id, Context context, ChooseGroupAdapter adapter){
             groupsList.remove(id);
+            countGroups = countGroups - 1;
             adapter.notifyDataSetChanged();
             Toast.makeText(context, groupId.getText().toString() + " удалена!", Toast.LENGTH_SHORT).show();
         }

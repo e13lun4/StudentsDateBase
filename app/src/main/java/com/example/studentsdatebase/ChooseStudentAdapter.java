@@ -1,6 +1,7 @@
 package com.example.studentsdatebase;
 
 
+import static com.example.studentsdatebase.AddStudentActivity.countStudents;
 import static com.example.studentsdatebase.ChooseGroupActivity.groupsList;
 import static com.example.studentsdatebase.ChooseStudentActivity.studentsList;
 
@@ -175,6 +176,7 @@ public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdap
         @SuppressLint("NotifyDataSetChanged")
         private void deleteStudent(int id, Context context, ChooseStudentAdapter adapter){
             studentsList.remove(id);
+            countStudents = countStudents - 1;
             adapter.notifyDataSetChanged();
             Toast.makeText(context, "Студент " + sSurname.getText().toString() + " " + sName.getText().toString() + " удален(а)!", Toast.LENGTH_SHORT).show();
         }

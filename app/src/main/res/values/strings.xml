@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentsDateBase</string>
+    <string name="app_name">База данных студентов</string>
     <string name="add_group">Добавить группу</string>
     <string name="read_groups">Просмотреть группы</string>
     <string name="add_student">Добавить студента</string>
