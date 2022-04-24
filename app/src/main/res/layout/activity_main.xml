@@ -10,18 +10,57 @@
     <Button
         android:id="@+id/addGroup"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="256dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="256dp"
-        android:text="Добавить группу"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#CB4335"
+        android:text="Добавить группу"
         app:cornerRadius="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/readGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#CB4335"
+        android:text="Просмотреть группы"
+        app:cornerRadius="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addGroup" />
+
+    <Button
+        android:id="@+id/addStudent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#CB4335"
+        android:text="Добавить студента"
+        app:cornerRadius="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readGroup" />
+
+    <Button
+        android:id="@+id/readStudent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#CB4335"
+        android:text="Просмотреть студентов"
+        app:cornerRadius="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStudent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

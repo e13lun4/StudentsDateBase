@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddGroupActivity extends AppCompatActivity {
     private EditText groupId;
@@ -29,10 +30,11 @@ public class AddGroupActivity extends AppCompatActivity {
 //            Intent intent = new Intent(AddGroupActivity.this, ChooseGroupAdapter.class);
 //            id_ = intent.putExtra("GROUP_ID", groupId.getText().toString());
 //            intent.putExtra("GROUP_NAME", groupName.getText().toString());
-            Intent intent = new Intent(AddGroupActivity.this, ChooseGroupActivity.class);
+//            Intent intent = new Intent(AddGroupActivity.this, ChooseGroupActivity.class);
             countGroups++;
             groupsList.add(new GroupModel(groupId.getText().toString(), groupName.getText().toString()));
-            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Группа " + groupId.getText().toString() + " успешно добавлена!", Toast.LENGTH_SHORT).show();
+//            startActivity(intent);
         });
     }
 }

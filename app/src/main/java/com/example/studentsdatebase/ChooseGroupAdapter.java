@@ -1,13 +1,17 @@
 package com.example.studentsdatebase;
 
+import static com.example.studentsdatebase.AddStudentActivity.countStudents;
 import static com.example.studentsdatebase.ChooseGroupActivity.groupsList;
+import static com.example.studentsdatebase.ChooseStudentActivity.studentsList;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +38,10 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String group_id = String.valueOf(groupList.get(position).getId());
-        holder.viewData(group_id, position, this);
+        String group_id = "Группа: " + String.valueOf(groupList.get(position).getId());
+        String group_name = "Факультет: " + String.valueOf(groupList.get(position).getName());
+
+        holder.viewData(group_id, group_name, position, this);
     }
 
     @Override
@@ -45,26 +51,70 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView dBtn;
-        private TextView groupId;
+        private TextView groupId, groupName;
+        private Dialog dialog;
+        private EditText currentGroupId, currentGroupName;
+        private Button changeGroupBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             groupId = itemView.findViewById(R.id.groupItemId);
+            groupName = itemView.findViewById(R.id.groupItemName);
             dBtn = itemView.findViewById(R.id.groupItemDelete);
 
-        }
-        private void viewData(String name_id, int pos, ChooseGroupAdapter adapter){
-            groupId.setText(name_id);
+            dialog = new Dialog(itemView.getContext());
+            dialog.setContentView(R.layout.edit_group_dialog);
+            dialog.setCancelable(true);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            itemView.setOnClickListener(view -> {
-                ChooseGroupActivity.sGroupI = pos;
-                Intent intent = new Intent(itemView.getContext(), MainActivity2.class);
-                itemView.getContext().startActivity(intent);
-            });
+            currentGroupId = dialog.findViewById(R.id.editCGroupId);
+            currentGroupName = dialog.findViewById(R.id.editCGroupName);
+            changeGroupBtn = dialog.findViewById(R.id.cGroupDButton);
+
+        }
+        private void viewData(String name_id, String name_name,  int pos, ChooseGroupAdapter adapter){
+            groupId.setText(name_id);
+            groupName.setText(name_name);
+//            itemView.setOnClickListener(view -> {
+//                ChooseGroupActivity.sGroupI = pos;
+//                Intent intent = new Intent(itemView.getContext(), MainActivity2.class);
+//                itemView.getContext().startActivity(intent);
+//            });
 
             dBtn.setOnClickListener(view -> {
-                deleteGroup(pos, itemView.getContext(), adapter);
+//                Log.i("id", groupId.getText().toString());
+//                Log.i("sId", studentsList.get(0).getGroup());
+                if (countStudents == 0) {
+                    deleteGroup(pos, itemView.getContext(), adapter);
+                }else{
+                    for (int i = 0; i < countStudents; i++) {
+                        if (studentsList.get(i).getGroup().equals(groupId.getText().toString())) {
+                            Toast.makeText(itemView.getContext(), "Невозможно удалить группу", Toast.LENGTH_SHORT).show();
+                        } else {
+                            deleteGroup(pos, itemView.getContext(), adapter);
+                        }
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(view -> {
+                currentGroupId.setText(groupList.get(pos).getId());
+                currentGroupName.setText(groupList.get(pos).getName());
+                dialog.show();
+
+                return false;
+            });
+
+            changeGroupBtn.setOnClickListener(view -> {
+                if (currentGroupId.getText().toString().isEmpty() && currentGroupName.getText().toString().isEmpty()){
+                    currentGroupId.setError("Введите группу");
+                    currentGroupName.setError("Введите факультет");
+                    return;
+                }
+
+                uGroupData(currentGroupId.getText().toString(), currentGroupName.getText().toString(), pos, itemView.getContext(), adapter);
+
             });
 
         }
@@ -73,7 +123,16 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
         private void deleteGroup(int id, Context context, ChooseGroupAdapter adapter){
             groupsList.remove(id);
             adapter.notifyDataSetChanged();
-            Toast.makeText(context, "Группа удалена", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, groupId.getText().toString() + " удалена!", Toast.LENGTH_SHORT).show();
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        private void uGroupData(String newGroupId, String newGroupName, int pos, Context context, ChooseGroupAdapter adapter){
+            dialog.dismiss();
+            groupsList.get(pos).setId(newGroupId);
+            groupsList.get(pos).setName(newGroupName);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(context, "Группа и факультет изменены!", Toast.LENGTH_SHORT).show();
         }
 
     }

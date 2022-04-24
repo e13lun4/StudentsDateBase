@@ -12,7 +12,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        addStudent = findViewById(R.id.addStudent);
+        addStudent = findViewById(R.id.addStudentTest);
         addStudent.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity2.this, AddStudentActivity.class);
             startActivity(intent);

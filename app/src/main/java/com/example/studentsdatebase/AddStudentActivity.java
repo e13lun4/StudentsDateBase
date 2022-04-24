@@ -8,11 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddStudentActivity extends AppCompatActivity {
-    private EditText name,surname,middleName,birthDate;
+    private EditText name,surname,middleName,birthDate, group;
     private Button addStudentBtn;
-    private static int countStudents = 0;
+    public static int countStudents = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class AddStudentActivity extends AppCompatActivity {
         middleName = findViewById(R.id.studentMiddleName);
         birthDate = findViewById(R.id.studentBirthDate);
         addStudentBtn = findViewById(R.id.addStudentButton);
+        group = findViewById(R.id.studentGroup);
 
         addStudentBtn.setOnClickListener(view -> {
 //            Intent intent = new Intent(AddStudentActivity.this, ChooseStudentAdapter.class);
@@ -31,10 +33,11 @@ public class AddStudentActivity extends AppCompatActivity {
 //            intent.putExtra("LastNameStudent", LastName.getText().toString());
 //            intent.putExtra("BirthDateStudent", BirthDate.getText().toString());
 
-            Intent intent1 = new Intent(AddStudentActivity.this, ChooseStudentActivity.class);
+//            Intent intent1 = new Intent(AddStudentActivity.this, ChooseStudentActivity.class);
             countStudents++;
-            studentsList.add(new StudentModel(name.getText().toString(), surname.getText().toString(), middleName.getText().toString(), birthDate.getText().toString()));
-            startActivity(intent1);
+            studentsList.add(new StudentModel(name.getText().toString(), surname.getText().toString(), middleName.getText().toString(), birthDate.getText().toString(), group.getText().toString()));
+            Toast.makeText(getApplicationContext(), "Студент " + surname.getText().toString() + " " + name.getText().toString() +  " успешно добавлен(а)!", Toast.LENGTH_SHORT).show();
+//            startActivity(intent1);
         });
     }
 }

@@ -1,13 +1,14 @@
 package com.example.studentsdatebase;
 
 public class StudentModel {
-    String name, surname, middleName,birthDate;
+    String name, surname, middleName,birthDate, group;
 
-    public StudentModel(String name, String surname, String lastname, String birthDate) {
+    public StudentModel(String name, String surname, String lastname, String birthDate, String group) {
         this.name = name;
         this.surname = surname;
         this.middleName = lastname;
         this.birthDate = birthDate;
+        this.group = group;
     }
 
     public String getName() {
@@ -40,5 +41,13 @@ public class StudentModel {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getGroup() {
+        return "Группа: " + group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }
