@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,14 +21,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.ViewHolder> {
+public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.ViewHolder> implements Filterable {
     private List<GroupModel> groupList;
+    private List<GroupModel> FullgroupList;
     public static String g_id;
 
     public ChooseGroupAdapter(List<GroupModel> groupList) {
         this.groupList = groupList;
+        FullgroupList = new ArrayList<>(groupList);
+
     }
 
     @NonNull
@@ -48,6 +54,41 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
     public int getItemCount() {
         return groupList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return probablyFilter;
+    }
+    public Filter probablyFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<GroupModel> filteredlist = new ArrayList<>();
+            if (charSequence == null || charSequence.length() == 0){
+                filteredlist.addAll(FullgroupList);
+            } else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(GroupModel item: FullgroupList){
+                    if (item.getId().toLowerCase().contains(filterPattern)){
+                        filteredlist.add(item);
+                    }
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredlist;
+
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            groupList.clear();
+            groupList.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView dBtn;

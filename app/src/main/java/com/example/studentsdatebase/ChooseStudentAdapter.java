@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +22,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdapter.ViewHolder> {
+public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdapter.ViewHolder> implements Filterable {
     private List<StudentModel> studentList;
+    private List<StudentModel> FullStudentList;
 
 
     public ChooseStudentAdapter(List<StudentModel> studentList) {
         this.studentList = studentList;
+        FullStudentList = new ArrayList<>(studentList);
 
     }
 
@@ -54,6 +59,40 @@ public class ChooseStudentAdapter extends RecyclerView.Adapter<ChooseStudentAdap
     public int getItemCount() {
         return studentList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return probableFilter;
+    }
+    private Filter probableFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<StudentModel> filteredlist = new ArrayList<>();
+            if (charSequence == null || charSequence.length() == 0){
+                filteredlist.addAll(FullStudentList);
+            } else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(StudentModel item: FullStudentList){
+                    if (item.getSurname().toLowerCase().contains(filterPattern)){
+                        filteredlist.add(item);
+                    }
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredlist;
+
+            return results;
+    }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            studentList.clear();
+            studentList.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView sName, sSurname, sMiddleName, sBirthDate, sGroup;
