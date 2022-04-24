@@ -53,11 +53,13 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 
     @Override
     public int getItemCount() {
+
         return groupList.size();
     }
 
     @Override
     public Filter getFilter() {
+
         return probablyFilter;
     }
     public Filter probablyFilter = new Filter() {
@@ -83,6 +85,7 @@ public class ChooseGroupAdapter extends RecyclerView.Adapter<ChooseGroupAdapter.
 
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             groupList.clear();
